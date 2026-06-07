@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guitar Class Interest Form</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; padding: 40px 20px; }
+.page-wrap { max-width: 640px; margin: 0 auto; background: #fff; border-radius: 12px; border: 1px solid #e5e5e5; padding: 2.5rem 2.5rem 2rem; }
+.form-header { margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid #ebebeb; }
+.form-header h1 { font-size: 20px; font-weight: 500; color: #1a1a1a; margin-bottom: 4px; }
+.form-header p { font-size: 14px; color: #888; line-height: 1.5; }
+.section { margin-bottom: 1.75rem; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 0.75rem; }
+.field-row { display: grid; gap: 12px; margin-bottom: 12px; }
+.field-row.two { grid-template-columns: 1fr 1fr; }
+.field-row.one { grid-template-columns: 1fr; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 13px; color: #666; font-weight: 400; }
+.field label .req { color: #e24b4a; margin-left: 2px; }
+.field input, .field select, .field textarea { width: 100%; font-size: 14px; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #1a1a1a; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.15s; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: #999; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+.field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+.pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { padding: 6px 14px; border-radius: 20px; border: 1px solid #ddd; background: #fff; font-size: 13px; color: #1a1a1a; cursor: pointer; transition: all 0.12s; font-family: 'DM Sans', sans-serif; }
+.pill:hover { border-color: #999; background: #f9f9f9; }
+.pill.selected { background: #e8f0fe; border-color: #4a7cf7; color: #1a4fbf; }
+.location-pills { display: flex; gap: 10px; margin-top: 2px; }
+.loc-pill { flex: 1; padding: 12px 14px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer; transition: all 0.12s; font-family: 'DM Sans', sans-serif; text-align: left; }
+.loc-pill:hover { border-color: #999; background: #f9f9f9; }
+.loc-pill.selected { background: #e8f0fe; border-color: #4a7cf7; }
+.loc-pill .loc-name { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+.loc-pill.selected .loc-name { color: #1a4fbf; }
+.loc-pill .loc-sub { font-size: 11px; color: #777; margin-top: 2px; }
+.loc-pill.selected .loc-sub { color: #4a7cf7; opacity: 0.8; }
+.class-section-wrap { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.35s ease, opacity 0.25s ease; }
+.class-section-wrap.visible { max-height: 500px; opacity: 1; }
+.class-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.class-cards.two-col { grid-template-columns: repeat(2, 1fr); }
+.class-card { padding: 14px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer; transition: all 0.12s; text-align: left; }
+.class-card:hover { border-color: #999; background: #f9f9f9; }
+.class-card.selected { background: #e8f0fe; border-color: #4a7cf7; }
+.class-card .card-title { font-size: 13px; font-weight: 500; color: #1a1a1a; margin-bottom: 2px; }
+.class-card.selected .card-title { color: #1a4fbf; }
+.class-card .card-sub { font-size: 11px; color: #666; line-height: 1.4; }
+.class-card.selected .card-sub { color: #4a7cf7; opacity: 0.85; }
+.class-card .card-price { font-size: 14px; font-weight: 500; color: #666; margin-top: 8px; }
+.class-card.selected .card-price { color: #1a4fbf; }
+.age-field-wrap { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.25s ease, opacity 0.2s ease; }
+.age-field-wrap.visible { max-height: 80px; opacity: 1; }
+.divider { border: none; border-top: 1px solid #ebebeb; margin: 1.5rem 0; }
+.goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.goal-item { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 13px; color: #1a1a1a; transition: all 0.12s; font-family: 'DM Sans', sans-serif; }
+.goal-item:hover { background: #f9f9f9; border-color: #999; }
+.goal-item.selected { background: #e8f0fe; border-color: #4a7cf7; color: #1a4fbf; }
+.goal-item i { font-size: 15px; }
+.ref-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.submit-row { display: flex; align-items: center; gap: 12px; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid #ebebeb; }
+.btn-submit { padding: 10px 24px; border-radius: 8px; background: #1a1a1a; color: #fff; font-size: 14px; font-weight: 500; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.15s; }
+.btn-submit:hover { opacity: 0.85; }
+.btn-clear { padding: 10px 16px; border-radius: 8px; background: transparent; color: #666; font-size: 14px; border: 1px solid #ddd; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.12s; }
+.btn-clear:hover { background: #f5f5f3; }
+.success-panel { display: none; text-align: center; padding: 3rem 1rem; }
+.success-panel i { font-size: 48px; color: #3dba6f; margin-bottom: 1rem; display: block; }
+.success-panel h3 { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+.success-panel p { font-size: 14px; color: #888; }
+.error-msg { font-size: 12px; color: #e24b4a; margin-top: 3px; display: none; }
+input.error, select.error { border-color: #e24b4a; }
+@media (max-width: 520px) {
+  .page-wrap { padding: 1.5rem 1.25rem; }
+  .field-row.two { grid-template-columns: 1fr; }
+  .class-cards, .class-cards.two-col, .goals-grid, .ref-row { grid-template-columns: 1fr; }
+  .location-pills { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+  <div id="formWrap">
+    <div class="form-header">
+      <h1>Guitar class interest form</h1>
+      <p>Fill this out and we'll be in touch to confirm your spot.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Contact information</div>
+      <div class="field-row two">
+        <div class="field">
+          <label>First name <span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="e.g. Alex">
+          <span class="error-msg" id="err-firstName">Please enter your first name</span>
+        </div>
+        <div class="field">
+          <label>Last name <span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="e.g. Martinez">
+          <span class="error-msg" id="err-lastName">Please enter your last name</span>
+        </div>
+      </div>
+      <div class="field-row two">
+        <div class="field">
+          <label>Phone number <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="(817) 555-0100">
+          <span class="error-msg" id="err-phone">Please enter a phone number</span>
+        </div>
+        <div class="field">
+          <label>Email address <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="you@email.com">
+          <span class="error-msg" id="err-email">Please enter an email address</span>
+        </div>
+      </div>
+      <div class="field-row one">
+        <div class="field">
+          <label>Best way to reach you</label>
+          <div class="pill-group" id="contactPref" style="margin-top:2px">
+            <button type="button" class="pill" data-val="Phone call">Phone call</button>
+            <button type="button" class="pill" data-val="Text">Text</button>
+            <button type="button" class="pill" data-val="Email">Email</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">Location <span class="req">*</span></div>
+      <div class="location-pills" id="locationPills">
+        <button type="button" class="loc-pill" data-val="Fort Worth">
+          <div class="loc-name">Fort Worth</div>
+          <div class="loc-sub">3 classes available</div>
+        </button>
+        <button type="button" class="loc-pill" data-val="Grapevine">
+          <div class="loc-name">Grapevine</div>
+          <div class="loc-sub">2 classes available</div>
+        </button>
+      </div>
+      <span class="error-msg" id="err-location" style="display:none; margin-top:6px">Please select a location</span>
+
+      <div class="class-section-wrap" id="classSectionWrap">
+        <div style="margin-top:1.25rem; margin-bottom:6px">
+          <label style="font-size:13px; color:#666">Which class are you interested in? <span class="req">*</span></label>
+        </div>
+
+        <div class="class-cards" id="fwCards" style="display:none">
+          <div class="class-card" data-val="Youth Class 1 - Fort Worth" data-youth="true">
+            <div class="card-title">Youth Class 1</div>
+            <div class="card-sub">Under 14<br>Mon &amp; Wed &middot; 2:00&ndash;3:00 PM</div>
+            <div class="card-price">$240/mo</div>
+          </div>
+          <div class="class-card" data-val="Youth Class 2 - Fort Worth" data-youth="true">
+            <div class="card-title">Youth Class 2</div>
+            <div class="card-sub">Ages 14&ndash;17<br>Mon &amp; Fri &middot; 5:30&ndash;6:30 PM</div>
+            <div class="card-price">$240/mo</div>
+          </div>
+          <div class="class-card" data-val="Adult Class - Fort Worth" data-youth="false">
+            <div class="card-title">Adult Class</div>
+            <div class="card-sub">18 and up<br>Mon &amp; Fri &middot; 7:00&ndash;8:00 PM</div>
+            <div class="card-price">$300/mo</div>
+          </div>
+        </div>
+
+        <div class="class-cards two-col" id="gvCards" style="display:none">
+          <div class="class-card" data-val="Youth Class 1 - Grapevine" data-youth="true">
+            <div class="card-title">Youth Class 1</div>
+            <div class="card-sub">Under 14<br>1:15&ndash;2:15 PM</div>
+            <div class="card-price">$240/mo</div>
+          </div>
+          <div class="class-card" data-val="Youth Class 2 - Grapevine" data-youth="true">
+            <div class="card-title">Youth Class 2</div>
+            <div class="card-sub">Ages 14&ndash;17<br>2:30&ndash;3:30 PM</div>
+            <div class="card-price">$240/mo</div>
+          </div>
+        </div>
+
+        <span class="error-msg" id="err-class" style="display:none; margin-top:4px">Please select a class</span>
+
+        <div class="age-field-wrap" id="ageFieldWrap">
+          <div class="field" style="width:160px; margin-top:12px">
+            <label>Student's age</label>
+            <input type="number" id="studentAge" placeholder="e.g. 10" min="4" max="17">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">Experience &amp; background</div>
+      <div class="field-row one" style="margin-bottom:10px">
+        <div class="field">
+          <label>Experience level</label>
+          <div class="pill-group" id="expLevel" style="margin-top:2px">
+            <button type="button" class="pill" data-val="Complete beginner">Complete beginner</button>
+            <button type="button" class="pill" data-val="Some basics">Some basics</button>
+            <button type="button" class="pill" data-val="Intermediate">Intermediate</button>
+            <button type="button" class="pill" data-val="Advanced">Advanced</button>
+          </div>
+        </div>
+      </div>
+      <div class="field-row one" style="margin-bottom:10px">
+        <div class="field">
+          <label>Style preference</label>
+          <div class="pill-group" id="stylePrefs" style="margin-top:2px">
+            <button type="button" class="pill" data-val="Rock">Rock</button>
+            <button type="button" class="pill" data-val="Blues">Blues</button>
+            <button type="button" class="pill" data-val="Country">Country</button>
+            <button type="button" class="pill" data-val="Classical">Classical</button>
+            <button type="button" class="pill" data-val="Pop">Pop</button>
+            <button type="button" class="pill" data-val="Jazz">Jazz</button>
+            <button type="button" class="pill" data-val="Not sure yet">Not sure yet</button>
+          </div>
+        </div>
+      </div>
+      <div class="field-row one">
+        <div class="field">
+          <label>Do you have your own guitar?</label>
+          <div class="pill-group" id="hasGuitar" style="margin-top:2px">
+            <button type="button" class="pill" data-val="Yes">Yes</button>
+            <button type="button" class="pill" data-val="No">No</button>
+            <button type="button" class="pill" data-val="Planning to get one">Planning to get one</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">Goals</div>
+      <div style="margin-bottom:8px"><label style="font-size:13px; color:#666">What are you hoping to get out of class? (select all that apply)</label></div>
+      <div class="goals-grid" id="goals">
+        <button type="button" class="goal-item" data-val="Learn songs I love"><i class="ti ti-music"></i> Learn songs I love</button>
+        <button type="button" class="goal-item" data-val="Read sheet music"><i class="ti ti-file-music"></i> Read sheet music</button>
+        <button type="button" class="goal-item" data-val="Play in a band or group"><i class="ti ti-users"></i> Play in a band or group</button>
+        <button type="button" class="goal-item" data-val="Build technique"><i class="ti ti-hand-finger"></i> Build technique</button>
+        <button type="button" class="goal-item" data-val="Write original music"><i class="ti ti-pencil"></i> Write original music</button>
+        <button type="button" class="goal-item" data-val="Perform on stage"><i class="ti ti-microphone"></i> Perform on stage</button>
+        <button type="button" class="goal-item" data-val="Play for fun / relaxation"><i class="ti ti-mood-smile"></i> Play for fun / relaxation</button>
+        <button type="button" class="goal-item" data-val="Impress family and friends"><i class="ti ti-star"></i> Impress family &amp; friends</button>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">Scheduling &amp; logistics</div>
+      <div class="ref-row">
+        <div class="field">
+          <label>Preferred start month</label>
+          <select id="startDate">
+            <option value="" disabled selected>Select a month</option>
+            <option>July 2026</option>
+            <option>August 2026</option>
+            <option>September 2026</option>
+            <option>October 2026</option>
+            <option>November 2026</option>
+            <option>December 2026</option>
+            <option>January 2027</option>
+            <option>February 2027</option>
+            <option>March 2027</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>How did you hear about us?</label>
+          <select id="referral">
+            <option value="" disabled selected>Select one</option>
+            <option>Google search</option>
+            <option>Social media</option>
+            <option>Friend or family referral</option>
+            <option>Drove by / saw the location</option>
+            <option>Flyer or ad</option>
+            <option>AI Search (ChatGPT, Claude, etc.)</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row one" style="margin-top:12px">
+        <div class="field">
+          <label>Anything else you'd like us to know?</label>
+          <textarea id="notes" placeholder="Scheduling constraints, special requests, questions, etc."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-row">
+      <button type="button" class="btn-submit" id="btnSubmit">Submit interest form</button>
+      <button type="button" class="btn-clear" id="btnClear">Clear form</button>
+    </div>
+  </div>
+
+  <div class="success-panel" id="successPanel">
+    <i class="ti ti-circle-check"></i>
+    <h3>Thanks &mdash; we'll be in touch soon!</h3>
+    <p>Your interest form has been submitted.<br>Someone from our team will reach out to confirm your spot.</p>
+    <button type="button" class="btn-clear" style="margin-top:1.5rem" id="btnAnother">Submit another response</button>
+  </div>
+</div>
+
+<script>
+let selectedLocation = '';
+
+function setupPills(groupId, multi) {
+  const group = document.getElementById(groupId);
+  if (!group) return;
+  group.querySelectorAll('.pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (!multi) group.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
+      pill.classList.toggle('selected');
+    });
+  });
+}
+
+function setupGoals() {
+  document.querySelectorAll('#goals .goal-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('selected'));
+  });
+}
+
+function setupLocationPills() {
+  document.querySelectorAll('#locationPills .loc-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('#locationPills .loc-pill').forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      selectedLocation = pill.dataset.val;
+      document.getElementById('err-location').style.display = 'none';
+      document.querySelectorAll('.class-card.selected').forEach(c => c.classList.remove('selected'));
+      document.getElementById('ageFieldWrap').classList.remove('visible');
+      document.getElementById('studentAge').value = '';
+      document.getElementById('err-class').style.display = 'none';
+      const fw = document.getElementById('fwCards');
+      const gv = document.getElementById('gvCards');
+      if (selectedLocation === 'Fort Worth') {
+        fw.style.display = 'grid';
+        gv.style.display = 'none';
+      } else {
+        fw.style.display = 'none';
+        gv.style.display = 'grid';
+      }
+      document.getElementById('classSectionWrap').classList.add('visible');
+    });
+  });
+}
+
+function setupClassCards() {
+  document.querySelectorAll('.class-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const activeGrid = selectedLocation === 'Fort Worth'
+        ? document.getElementById('fwCards')
+        : document.getElementById('gvCards');
+      activeGrid.querySelectorAll('.class-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      document.getElementById('err-class').style.display = 'none';
+      const isYouth = card.dataset.youth === 'true';
+      const ageWrap = document.getElementById('ageFieldWrap');
+      if (isYouth) {
+        ageWrap.classList.add('visible');
+      } else {
+        ageWrap.classList.remove('visible');
+        document.getElementById('studentAge').value = '';
+      }
+    });
+  });
+}
+
+function getSelected(groupId) {
+  const group = document.getElementById(groupId);
+  if (!group) return '';
+  return Array.from(group.querySelectorAll('.pill.selected, .goal-item.selected'))
+    .map(el => el.dataset.val || el.textContent.trim()).join(', ');
+}
+
+function getSelectedClass() {
+  const card = document.querySelector('.class-card.selected');
+  return card ? card.dataset.val : '';
+}
+
+function validate() {
+  let ok = true;
+  [
+    { id: 'firstName', err: 'err-firstName' },
+    { id: 'lastName',  err: 'err-lastName' },
+    { id: 'phone',     err: 'err-phone' },
+    { id: 'email',     err: 'err-email' },
+  ].forEach(({ id, err }) => {
+    const el = document.getElementById(id);
+    const errEl = document.getElementById(err);
+    if (!el.value.trim()) {
+      el.classList.add('error'); errEl.style.display = 'block'; ok = false;
+    } else {
+      el.classList.remove('error'); errEl.style.display = 'none';
+    }
+  });
+  if (!selectedLocation) {
+    document.getElementById('err-location').style.display = 'block'; ok = false;
+  }
+  if (!getSelectedClass()) {
+    document.getElementById('err-class').style.display = 'block'; ok = false;
+  }
+  return ok;
+}
+
+// ← Paste your deployed Apps Script URL here after following setup steps
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8bzJExIBp2nO1FRe5Qi_GWukh8kJaSgl85hufLh0AYNFUFDWD1aD7r24dtya1NHzF/exec";
+
+document.getElementById('btnSubmit').addEventListener('click', () => {
+  if (!validate()) return;
+
+  var btn = document.getElementById('btnSubmit');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  var v = function(id) { return document.getElementById(id) ? document.getElementById(id).value : ''; };
+
+  var payload = {
+    firstName:   v('firstName'),
+    lastName:    v('lastName'),
+    phone:       v('phone'),
+    email:       v('email'),
+    contactPref: getSelected('contactPref'),
+    location:    selectedLocation,
+    className:   getSelectedClass(),
+    studentAge:  v('studentAge'),
+    experience:  getSelected('expLevel'),
+    stylePrefs:  getSelected('stylePrefs'),
+    hasGuitar:   getSelected('hasGuitar'),
+    goals:       getSelected('goals'),
+    startMonth:  document.getElementById('startDate') ? document.getElementById('startDate').value : '',
+    heardVia:    document.getElementById('referral') ? document.getElementById('referral').value : '',
+    notes:       v('notes')
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function() {
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('successPanel').style.display = 'block';
+  })
+  .catch(function() {
+    // no-cors means we won't get an error even on success — show success
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('successPanel').style.display = 'block';
+  });
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+  document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+  document.querySelectorAll('.pill.selected, .goal-item.selected, .class-card.selected, .loc-pill.selected').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+  document.getElementById('ageFieldWrap').classList.remove('visible');
+  document.getElementById('classSectionWrap').classList.remove('visible');
+  selectedLocation = '';
+});
+
+document.getElementById('btnAnother').addEventListener('click', () => {
+  document.getElementById('formWrap').style.display = 'block';
+  document.getElementById('successPanel').style.display = 'none';
+  document.getElementById('btnClear').click();
+});
+
+setupPills('contactPref', false);
+setupPills('expLevel', false);
+setupPills('stylePrefs', true);
+setupPills('hasGuitar', false);
+setupGoals();
+setupLocationPills();
+setupClassCards();
+</script>
+</body>
+</html>

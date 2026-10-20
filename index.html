@@ -3,478 +3,600 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guitar Class Interest Form</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<title>Guitar Class Sign-Up</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/tabler-icons.min.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'DM Sans', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; padding: 40px 20px; }
-.page-wrap { max-width: 640px; margin: 0 auto; background: #fff; border-radius: 12px; border: 1px solid #e5e5e5; padding: 2.5rem 2.5rem 2rem; }
-.form-header { margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid #ebebeb; }
-.form-header h1 { font-size: 20px; font-weight: 500; color: #1a1a1a; margin-bottom: 4px; }
-.form-header p { font-size: 14px; color: #888; line-height: 1.5; }
-.section { margin-bottom: 1.75rem; }
-.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 0.75rem; }
-.field-row { display: grid; gap: 12px; margin-bottom: 12px; }
-.field-row.two { grid-template-columns: 1fr 1fr; }
-.field-row.one { grid-template-columns: 1fr; }
-.field { display: flex; flex-direction: column; gap: 5px; }
-.field label { font-size: 13px; color: #666; font-weight: 400; }
-.field label .req { color: #e24b4a; margin-left: 2px; }
-.field input, .field select, .field textarea { width: 100%; font-size: 14px; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; background: #fff; color: #1a1a1a; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.15s; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: #999; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
-.field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
-.pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill { padding: 6px 14px; border-radius: 20px; border: 1px solid #ddd; background: #fff; font-size: 13px; color: #1a1a1a; cursor: pointer; transition: all 0.12s; font-family: 'DM Sans', sans-serif; }
-.pill:hover { border-color: #999; background: #f9f9f9; }
-.pill.selected { background: #e8f0fe; border-color: #4a7cf7; color: #1a4fbf; }
-.location-pills { display: flex; gap: 10px; margin-top: 2px; }
-.loc-pill { flex: 1; padding: 12px 14px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer; transition: all 0.12s; font-family: 'DM Sans', sans-serif; text-align: left; }
-.loc-pill:hover { border-color: #999; background: #f9f9f9; }
-.loc-pill.selected { background: #e8f0fe; border-color: #4a7cf7; }
-.loc-pill .loc-name { font-size: 14px; font-weight: 500; color: #1a1a1a; }
-.loc-pill.selected .loc-name { color: #1a4fbf; }
-.loc-pill .loc-sub { font-size: 11px; color: #777; margin-top: 2px; }
-.loc-pill.selected .loc-sub { color: #4a7cf7; opacity: 0.8; }
-.class-section-wrap { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.35s ease, opacity 0.25s ease; }
-.class-section-wrap.visible { max-height: 500px; opacity: 1; }
-.class-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.class-cards.two-col { grid-template-columns: repeat(2, 1fr); }
-.class-card { padding: 14px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer; transition: all 0.12s; text-align: left; }
-.class-card:hover { border-color: #999; background: #f9f9f9; }
-.class-card.selected { background: #e8f0fe; border-color: #4a7cf7; }
-.class-card .card-title { font-size: 13px; font-weight: 500; color: #1a1a1a; margin-bottom: 2px; }
-.class-card.selected .card-title { color: #1a4fbf; }
-.class-card .card-sub { font-size: 11px; color: #666; line-height: 1.4; }
-.class-card.selected .card-sub { color: #4a7cf7; opacity: 0.85; }
-.class-card .card-price { font-size: 14px; font-weight: 500; color: #666; margin-top: 8px; }
-.class-card.selected .card-price { color: #1a4fbf; }
-.age-field-wrap { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.25s ease, opacity 0.2s ease; }
-.age-field-wrap.visible { max-height: 80px; opacity: 1; }
-.divider { border: none; border-top: 1px solid #ebebeb; margin: 1.5rem 0; }
-.goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.goal-item { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 13px; color: #1a1a1a; transition: all 0.12s; font-family: 'DM Sans', sans-serif; }
-.goal-item:hover { background: #f9f9f9; border-color: #999; }
-.goal-item.selected { background: #e8f0fe; border-color: #4a7cf7; color: #1a4fbf; }
-.goal-item i { font-size: 15px; }
-.ref-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.submit-row { display: flex; align-items: center; gap: 12px; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid #ebebeb; }
-.btn-submit { padding: 10px 24px; border-radius: 8px; background: #1a1a1a; color: #fff; font-size: 14px; font-weight: 500; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.15s; }
-.btn-submit:hover { opacity: 0.85; }
-.btn-clear { padding: 10px 16px; border-radius: 8px; background: transparent; color: #666; font-size: 14px; border: 1px solid #ddd; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.12s; }
-.btn-clear:hover { background: #f5f5f3; }
-.success-panel { display: none; text-align: center; padding: 3rem 1rem; }
-.success-panel i { font-size: 48px; color: #3dba6f; margin-bottom: 1rem; display: block; }
-.success-panel h3 { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
-.success-panel p { font-size: 14px; color: #888; }
-.error-msg { font-size: 12px; color: #e24b4a; margin-top: 3px; display: none; }
-input.error, select.error { border-color: #e24b4a; }
-@media (max-width: 520px) {
-  .page-wrap { padding: 1.5rem 1.25rem; }
-  .field-row.two { grid-template-columns: 1fr; }
-  .class-cards, .class-cards.two-col, .goals-grid, .ref-row { grid-template-columns: 1fr; }
-  .location-pills { flex-direction: column; }
-}
+  :root {
+    --navy: #10375C;
+    --blue: #2E6CA4;
+    --blue-soft: #EEF4FA;
+    --line: #E3EAF1;
+    --line-2: #D7E1EC;
+    --ink: #1B2A38;
+    --muted: #667888;
+    --bg: #F7F9FC;
+    --white: #FFFFFF;
+    --good: #1E5A34;
+    --good-bg: #E9F5EE;
+    --good-line: #BBE0C9;
+    --error: #B4432F;
+    --radius: 14px;
+    --radius-sm: 9px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 22px 16px 44px; }
+
+  .head { text-align: center; margin-bottom: 20px; }
+  .ens-title { font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; }
+  .ens-sub { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 2px rgba(16,55,92,0.04);
+  }
+  .sec-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 14px;
+  }
+
+  .loc-btns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .loc-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 14px 6px;
+    min-width: 0;
+    text-align: center;
+    font-family: inherit;
+    background: var(--white);
+    border: 1.5px solid var(--line-2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .loc-btn:hover { border-color: var(--blue); }
+  .loc-btn.active { background: var(--navy); border-color: var(--navy); }
+  .loc-btn.tbd { opacity: 0.55; cursor: default; }
+  .loc-city { font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.15; }
+  .loc-day { font-size: 11.5px; color: var(--muted); }
+  .loc-btn.active .loc-city { color: #fff; }
+  .loc-btn.active .loc-day { color: #CFE0F0; }
+  .tbd-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--line);
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-top: 4px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px 16px;
+    background: var(--blue-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-top: 12px;
+  }
+  .info-grid.hidden { display: none; }
+  .info-item .lbl { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 2px; }
+  .info-item .val { font-size: 13.5px; font-weight: 600; color: var(--navy); }
+  .info-item.full { grid-column: 1 / -1; }
+
+  label.fld-label { display: block; font-size: 12.5px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .req { color: var(--error); }
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  .row2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+
+  input[type=text], input[type=email], input[type=tel], select, textarea {
+    width: 100%;
+    padding: 11px 12px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(46,108,164,0.14);
+  }
+  textarea { min-height: 82px; resize: vertical; }
+
+  .pill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .pill {
+    text-align: center;
+    padding: 10px 6px;
+    min-width: 0;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .pill:hover { border-color: var(--blue); }
+  .pill.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+  .goal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .goal-opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    text-align: left;
+  }
+  .goal-opt:hover { border-color: var(--blue); }
+  .goal-opt.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .goal-opt i { font-size: 16px; flex-shrink: 0; }
+
+  .contact-pill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+
+  .tgs-toggle {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+  .tgs-toggle input { margin-top: 3px; width: 17px; height: 17px; accent-color: var(--navy); flex-shrink: 0; }
+  .tgs-toggle .t1 { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .tgs-toggle .t2 { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .referral-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .ref-opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .ref-opt:hover { border-color: var(--blue); }
+  .ref-opt.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .ref-opt i { font-size: 15px; flex-shrink: 0; }
+
+  button.submit {
+    width: 100%;
+    margin-top: 4px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--white);
+    background: var(--navy);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  button.submit:hover { background: #0B2A47; }
+  button.submit:disabled { background: var(--muted); cursor: default; }
+
+  .foot-note { margin-top: 12px; font-size: 12px; color: var(--muted); text-align: center; }
+
+  .err-msg {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #FBEBE7;
+    border: 1px solid #E7BCB2;
+    border-radius: var(--radius-sm);
+    color: var(--error);
+    font-size: 13.5px;
+  }
+  .err-msg.show { display: block; }
+
+  .spinner {
+    display: none;
+    margin: 16px auto 0;
+    width: 26px; height: 26px;
+    border: 3px solid var(--line-2);
+    border-top-color: var(--navy);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .success {
+    display: none;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 40px 24px;
+  }
+  .success.show { display: block; }
+  .success i { font-size: 46px; color: var(--good); }
+  .success h2 { font-size: 20px; color: var(--navy); margin: 12px 0 6px; }
+  .success p { font-size: 14px; color: var(--muted); max-width: 380px; margin: 0 auto; }
+
+  @media (max-width: 480px) {
+    .row2, .info-grid { grid-template-columns: 1fr; }
+    .goal-grid, .referral-grid { grid-template-columns: 1fr; }
+    .card { padding: 18px 14px; }
+    .wrap { padding: 18px 12px 40px; }
+  }
+  @media (max-width: 380px) {
+    .loc-btn { padding: 11px 3px; }
+    .loc-city { font-size: 13px; }
+    .loc-day { font-size: 10px; }
+    .pill { font-size: 12px; padding: 9px 3px; }
+    .loc-btns, .pill-grid, .contact-pill-grid { gap: 6px; }
+  }
 </style>
 </head>
 <body>
-<div class="page-wrap">
-  <div id="formWrap">
-    <div class="form-header">
-      <h1>Guitar class interest form</h1>
-      <p>Fill this out and we'll be in touch to confirm your spot.</p>
-    </div>
+<div class="wrap">
 
-    <div class="section">
-      <div class="section-label">Contact information</div>
-      <div class="field-row two">
-        <div class="field">
-          <label>First name <span class="req">*</span></label>
-          <input type="text" id="firstName" placeholder="e.g. Alex">
-          <span class="error-msg" id="err-firstName">Please enter your first name</span>
-        </div>
-        <div class="field">
-          <label>Last name <span class="req">*</span></label>
-          <input type="text" id="lastName" placeholder="e.g. Martinez">
-          <span class="error-msg" id="err-lastName">Please enter your last name</span>
-        </div>
-      </div>
-      <div class="field-row two">
-        <div class="field">
-          <label>Phone number <span class="req">*</span></label>
-          <input type="tel" id="phone" placeholder="(817) 555-0100">
-          <span class="error-msg" id="err-phone">Please enter a phone number</span>
-        </div>
-        <div class="field">
-          <label>Email address <span class="req">*</span></label>
-          <input type="email" id="email" placeholder="you@email.com">
-          <span class="error-msg" id="err-email">Please enter an email address</span>
-        </div>
-      </div>
-      <div class="field-row one">
-        <div class="field">
-          <label>Best way to reach you</label>
-          <div class="pill-group" id="contactPref" style="margin-top:2px">
-            <button type="button" class="pill" data-val="Phone call">Phone call</button>
-            <button type="button" class="pill" data-val="Text">Text</button>
-            <button type="button" class="pill" data-val="Email">Email</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="section">
-      <div class="section-label">Location <span class="req">*</span></div>
-      <div class="location-pills" id="locationPills">
-        <button type="button" class="loc-pill" data-val="Fort Worth">
-          <div class="loc-name">Fort Worth</div>
-          <div class="loc-sub">3 classes available</div>
-        </button>
-        <button type="button" class="loc-pill" data-val="Grapevine">
-          <div class="loc-name">Grapevine</div>
-          <div class="loc-sub">2 classes available</div>
-        </button>
-      </div>
-      <span class="error-msg" id="err-location" style="display:none; margin-top:6px">Please select a location</span>
-
-      <div class="class-section-wrap" id="classSectionWrap">
-        <div style="margin-top:1.25rem; margin-bottom:6px">
-          <label style="font-size:13px; color:#666">Which class are you interested in? <span class="req">*</span></label>
-        </div>
-
-        <div class="class-cards" id="fwCards" style="display:none">
-          <div class="class-card" data-val="Youth Class 1 - Fort Worth" data-youth="true">
-            <div class="card-title">Youth Class 1</div>
-            <div class="card-sub">Under 14<br>Mon &amp; Wed &middot; 2:00&ndash;3:00 PM</div>
-            <div class="card-price">$240/mo</div>
-          </div>
-          <div class="class-card" data-val="Youth Class 2 - Fort Worth" data-youth="true">
-            <div class="card-title">Youth Class 2</div>
-            <div class="card-sub">Ages 14&ndash;17<br>Mon &amp; Fri &middot; 5:30&ndash;6:30 PM</div>
-            <div class="card-price">$240/mo</div>
-          </div>
-          <div class="class-card" data-val="Adult Class - Fort Worth" data-youth="false">
-            <div class="card-title">Adult Class</div>
-            <div class="card-sub">18 and up<br>Mon &amp; Fri &middot; 7:00&ndash;8:00 PM</div>
-            <div class="card-price">$300/mo</div>
-          </div>
-        </div>
-
-        <div class="class-cards two-col" id="gvCards" style="display:none">
-          <div class="class-card" data-val="Youth Class 1 - Grapevine" data-youth="true">
-            <div class="card-title">Youth Class 1</div>
-            <div class="card-sub">Under 14<br>Tue &amp; Thu &middot; 1:15&ndash;2:15 PM</div>
-            <div class="card-price">$240/mo</div>
-          </div>
-          <div class="class-card" data-val="Youth Class 2 - Grapevine" data-youth="true">
-            <div class="card-title">Youth Class 2</div>
-            <div class="card-sub">Ages 14&ndash;17<br>Tue &amp; Thu &middot; 2:30&ndash;3:30 PM</div>
-            <div class="card-price">$240/mo</div>
-          </div>
-        </div>
-
-        <span class="error-msg" id="err-class" style="display:none; margin-top:4px">Please select a class</span>
-
-        <div class="age-field-wrap" id="ageFieldWrap">
-          <div class="field" style="width:160px; margin-top:12px">
-            <label>Student's age</label>
-            <input type="number" id="studentAge" placeholder="e.g. 10" min="4" max="17">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="section">
-      <div class="section-label">Experience &amp; background</div>
-      <div class="field-row one" style="margin-bottom:10px">
-        <div class="field">
-          <label>Experience level</label>
-          <div class="pill-group" id="expLevel" style="margin-top:2px">
-            <button type="button" class="pill" data-val="Complete beginner">Complete beginner</button>
-            <button type="button" class="pill" data-val="Some basics">Some basics</button>
-            <button type="button" class="pill" data-val="Intermediate">Intermediate</button>
-            <button type="button" class="pill" data-val="Advanced">Advanced</button>
-          </div>
-        </div>
-      </div>
-      <div class="field-row one" style="margin-bottom:10px">
-        <div class="field">
-          <label>Style preference</label>
-          <div class="pill-group" id="stylePrefs" style="margin-top:2px">
-            <button type="button" class="pill" data-val="Rock">Rock</button>
-            <button type="button" class="pill" data-val="Blues">Blues</button>
-            <button type="button" class="pill" data-val="Country">Country</button>
-            <button type="button" class="pill" data-val="Classical">Classical</button>
-            <button type="button" class="pill" data-val="Pop">Pop</button>
-            <button type="button" class="pill" data-val="Jazz">Jazz</button>
-            <button type="button" class="pill" data-val="Not sure yet">Not sure yet</button>
-          </div>
-        </div>
-      </div>
-      <div class="field-row one">
-        <div class="field">
-          <label>Do you have your own guitar?</label>
-          <div class="pill-group" id="hasGuitar" style="margin-top:2px">
-            <button type="button" class="pill" data-val="Yes">Yes</button>
-            <button type="button" class="pill" data-val="No">No</button>
-            <button type="button" class="pill" data-val="Planning to get one">Planning to get one</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="section">
-      <div class="section-label">Goals</div>
-      <div style="margin-bottom:8px"><label style="font-size:13px; color:#666">What are you hoping to get out of class? (select all that apply)</label></div>
-      <div class="goals-grid" id="goals">
-        <button type="button" class="goal-item" data-val="Learn songs I love"><i class="ti ti-music"></i> Learn songs I love</button>
-        <button type="button" class="goal-item" data-val="Read sheet music"><i class="ti ti-file-music"></i> Read sheet music</button>
-        <button type="button" class="goal-item" data-val="Play in a band or group"><i class="ti ti-users"></i> Play in a band or group</button>
-        <button type="button" class="goal-item" data-val="Build technique"><i class="ti ti-hand-finger"></i> Build technique</button>
-        <button type="button" class="goal-item" data-val="Write original music"><i class="ti ti-pencil"></i> Write original music</button>
-        <button type="button" class="goal-item" data-val="Perform on stage"><i class="ti ti-microphone"></i> Perform on stage</button>
-        <button type="button" class="goal-item" data-val="Play for fun / relaxation"><i class="ti ti-mood-smile"></i> Play for fun / relaxation</button>
-        <button type="button" class="goal-item" data-val="Impress family and friends"><i class="ti ti-star"></i> Impress family &amp; friends</button>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="section">
-      <div class="section-label">Scheduling &amp; logistics</div>
-      <div class="ref-row">
-        <div class="field">
-          <label>Preferred start month</label>
-          <select id="startDate">
-            <option value="" disabled selected>Select a month</option>
-            <option>July 2026</option>
-            <option>August 2026</option>
-            <option>September 2026</option>
-            <option>October 2026</option>
-            <option>November 2026</option>
-            <option>December 2026</option>
-            <option>January 2027</option>
-            <option>February 2027</option>
-            <option>March 2027</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>How did you hear about us?</label>
-          <select id="referral">
-            <option value="" disabled selected>Select one</option>
-            <option>Google search</option>
-            <option>Social media</option>
-            <option>Friend or family referral</option>
-            <option>Drove by / saw the location</option>
-            <option>Flyer or ad</option>
-            <option>AI Search (ChatGPT, Claude, etc.)</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="field-row one" style="margin-top:12px">
-        <div class="field">
-          <label>Anything else you'd like us to know?</label>
-          <textarea id="notes" placeholder="Scheduling constraints, special requests, questions, etc."></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="submit-row">
-      <button type="button" class="btn-submit" id="btnSubmit">Submit interest form</button>
-      <button type="button" class="btn-clear" id="btnClear">Clear form</button>
-    </div>
+  <div class="head">
+    <div class="ens-title">Adult Evening Guitar Classes</div>
+    <div class="ens-sub">Weekly group guitar instruction for adults 18 and up</div>
   </div>
 
-  <div class="success-panel" id="successPanel">
+  <div id="form-area">
+
+    <!-- Location -->
+    <div class="card">
+      <div class="sec-lbl">Choose your location</div>
+      <div class="loc-btns" id="locBtns">
+        <button type="button" class="loc-btn" data-loc="Fort Worth" onclick="selectLocation('Fort Worth', this)">
+          <span class="loc-city">Fort Worth</span>
+          <span class="loc-day">Mondays</span>
+        </button>
+        <button type="button" class="loc-btn" data-loc="Grapevine" onclick="selectLocation('Grapevine', this)">
+          <span class="loc-city">Grapevine</span>
+          <span class="loc-day">Saturdays</span>
+        </button>
+        <button type="button" class="loc-btn tbd" data-loc="San Antonio" onclick="return false;">
+          <span class="loc-city">San Antonio</span>
+          <span class="loc-day">Coming soon</span>
+          <span class="tbd-tag">TBD</span>
+        </button>
+      </div>
+      <div class="info-grid hidden" id="locInfo">
+        <div class="info-item"><div class="lbl">Instructor</div><div class="val" id="iDirector"></div></div>
+        <div class="info-item"><div class="lbl">Schedule</div><div class="val" id="iSchedule"></div></div>
+        <div class="info-item full"><div class="lbl">Location</div><div class="val" id="iVenue"></div></div>
+        <div class="info-item full"><div class="lbl">Tuition</div><div class="val" id="iTuition"></div></div>
+      </div>
+    </div>
+
+    <!-- Your details -->
+    <div class="card">
+      <div class="sec-lbl">Your details</div>
+      <div class="row2">
+        <div class="field">
+          <label class="fld-label" for="fn">First name <span class="req">*</span></label>
+          <input type="text" id="fn" placeholder="Alex">
+        </div>
+        <div class="field">
+          <label class="fld-label" for="ln">Last name <span class="req">*</span></label>
+          <input type="text" id="ln" placeholder="Martinez">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field" style="margin-bottom:0">
+          <label class="fld-label" for="em">Email <span class="req">*</span></label>
+          <input type="email" id="em" placeholder="you@email.com">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label class="fld-label" for="ph">Phone <span class="req">*</span></label>
+          <input type="tel" id="ph" placeholder="(817) 555-0100">
+        </div>
+      </div>
+      <div class="field" style="margin-top:14px; margin-bottom:0">
+        <label class="fld-label">Best way to reach you</label>
+        <div class="contact-pill-grid" id="contactGrid">
+          <div class="pill" data-val="Phone call" onclick="selectPill(this, 'contactGrid')">Phone call</div>
+          <div class="pill" data-val="Text" onclick="selectPill(this, 'contactGrid')">Text</div>
+          <div class="pill" data-val="Email" onclick="selectPill(this, 'contactGrid')">Email</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About your playing -->
+    <div class="card">
+      <div class="sec-lbl">About your playing</div>
+      <div class="field">
+        <label class="fld-label">Experience level</label>
+        <div class="pill-grid" id="skillGrid">
+          <div class="pill" data-skill="Beginner" onclick="selectSkill(this)">Beginner</div>
+          <div class="pill" data-skill="Intermediate" onclick="selectSkill(this)">Intermediate</div>
+          <div class="pill" data-skill="Advanced" onclick="selectSkill(this)">Advanced</div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="fld-label" for="exp">How long have you been playing?</label>
+        <select id="exp">
+          <option value="" disabled selected>Select</option>
+          <option>Never played before</option>
+          <option>Less than 1 year</option>
+          <option>1 to 3 years</option>
+          <option>3 to 5 years</option>
+          <option>5 to 10 years</option>
+          <option>10 or more years</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="fld-label">Style interests (select all that apply)</label>
+        <div class="pill-grid" id="styleGrid">
+          <div class="pill" data-val="Rock" onclick="togglePill(this)">Rock</div>
+          <div class="pill" data-val="Blues" onclick="togglePill(this)">Blues</div>
+          <div class="pill" data-val="Country" onclick="togglePill(this)">Country</div>
+          <div class="pill" data-val="Classical" onclick="togglePill(this)">Classical</div>
+          <div class="pill" data-val="Pop" onclick="togglePill(this)">Pop</div>
+          <div class="pill" data-val="Jazz" onclick="togglePill(this)">Jazz</div>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label class="fld-label">Do you have your own guitar?</label>
+        <div class="pill-grid" id="guitarGrid">
+          <div class="pill" data-val="Yes" onclick="selectPill(this, 'guitarGrid')">Yes</div>
+          <div class="pill" data-val="No" onclick="selectPill(this, 'guitarGrid')">No</div>
+          <div class="pill" data-val="Planning to get one" onclick="selectPill(this, 'guitarGrid')">Planning to get one</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Goals -->
+    <div class="card">
+      <div class="sec-lbl">What are you hoping to get out of class?</div>
+      <div class="goal-grid" id="goalGrid">
+        <button type="button" class="goal-opt" data-val="Learn songs I love" onclick="toggleGoal(this)"><i class="ti ti-music"></i>Learn songs I love</button>
+        <button type="button" class="goal-opt" data-val="Build technique" onclick="toggleGoal(this)"><i class="ti ti-hand-finger"></i>Build technique</button>
+        <button type="button" class="goal-opt" data-val="Read sheet music" onclick="toggleGoal(this)"><i class="ti ti-file-music"></i>Read sheet music</button>
+        <button type="button" class="goal-opt" data-val="Play in a group" onclick="toggleGoal(this)"><i class="ti ti-users"></i>Play in a group</button>
+        <button type="button" class="goal-opt" data-val="Write original music" onclick="toggleGoal(this)"><i class="ti ti-pencil"></i>Write original music</button>
+        <button type="button" class="goal-opt" data-val="Perform on stage" onclick="toggleGoal(this)"><i class="ti ti-microphone"></i>Perform on stage</button>
+        <button type="button" class="goal-opt" data-val="Play for fun" onclick="toggleGoal(this)"><i class="ti ti-mood-smile"></i>Play for fun</button>
+        <button type="button" class="goal-opt" data-val="Impress family and friends" onclick="toggleGoal(this)"><i class="ti ti-star"></i>Impress family and friends</button>
+      </div>
+    </div>
+
+    <!-- Current student -->
+    <div class="card">
+      <div class="sec-lbl">Guitar Studio membership</div>
+      <label class="tgs-toggle">
+        <input type="checkbox" id="tgs-chk">
+        <div>
+          <div class="t1">I am a current Guitar Studio student</div>
+          <div class="t2">Let us know so we can connect your enrollment to your existing account</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- Start month -->
+    <div class="card">
+      <div class="sec-lbl">Scheduling</div>
+      <div class="field" style="margin-bottom:0">
+        <label class="fld-label" for="startMonth">Preferred start month <span class="req">*</span></label>
+        <select id="startMonth">
+          <option value="" disabled selected>Select a month</option>
+          <option>August 2026</option>
+          <option>September 2026</option>
+          <option>October 2026</option>
+          <option>November 2026</option>
+          <option>December 2026</option>
+          <option>January 2027</option>
+          <option>February 2027</option>
+          <option>March 2027</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- How did you hear -->
+    <div class="card">
+      <div class="sec-lbl">How did you hear about us?</div>
+      <div class="referral-grid" id="refGrid">
+        <button type="button" class="ref-opt" data-val="Google search" onclick="selectRef(this)"><i class="ti ti-brand-google"></i>Google search</button>
+        <button type="button" class="ref-opt" data-val="AI search" onclick="selectRef(this)"><i class="ti ti-robot"></i>AI search</button>
+        <button type="button" class="ref-opt" data-val="Social media" onclick="selectRef(this)"><i class="ti ti-brand-instagram"></i>Social media</button>
+        <button type="button" class="ref-opt" data-val="Friend or family" onclick="selectRef(this)"><i class="ti ti-users"></i>Friend or family</button>
+        <button type="button" class="ref-opt" data-val="Drove by / saw location" onclick="selectRef(this)"><i class="ti ti-map-pin"></i>Drove by / saw location</button>
+        <button type="button" class="ref-opt" data-val="Newsletter or email" onclick="selectRef(this)"><i class="ti ti-mail"></i>Newsletter or email</button>
+        <button type="button" class="ref-opt" data-val="Flyer or ad" onclick="selectRef(this)"><i class="ti ti-ad"></i>Flyer or ad</button>
+        <button type="button" class="ref-opt" data-val="Other" onclick="selectRef(this)"><i class="ti ti-dots"></i>Other</button>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="card">
+      <div class="sec-lbl">Anything else</div>
+      <div class="field" style="margin-bottom:0">
+        <label class="fld-label" for="notes">Questions or notes (optional)</label>
+        <textarea id="notes" placeholder="Scheduling constraints, special requests, or anything else we should know."></textarea>
+      </div>
+    </div>
+
+    <button class="submit" id="submit-btn" onclick="submitForm()">Submit interest form</button>
+    <p class="foot-note">We will follow up by email to confirm your spot and share next steps.</p>
+    <div class="err-msg" id="errMsg"></div>
+    <div class="spinner" id="spinner"></div>
+  </div>
+
+  <!-- Success -->
+  <div class="success" id="success-msg">
     <i class="ti ti-circle-check"></i>
-    <h3>Thanks &mdash; we'll be in touch soon!</h3>
-    <p>Your interest form has been submitted.<br>Someone from our team will reach out to confirm your spot.</p>
-    <button type="button" class="btn-clear" style="margin-top:1.5rem" id="btnAnother">Submit another response</button>
+    <h2>Thanks, we will be in touch soon!</h2>
+    <p>Your interest form has been submitted. Someone from our team will reach out to confirm your spot in the class.</p>
   </div>
+
 </div>
 
 <script>
-let selectedLocation = '';
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8bzJExIBp2nO1FRe5Qi_GWukh8kJaSgl85hufLh0AYNFUFDWD1aD7r24dtya1NHzF/exec";
 
-function setupPills(groupId, multi) {
-  const group = document.getElementById(groupId);
-  if (!group) return;
-  group.querySelectorAll('.pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      if (!multi) group.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
-      pill.classList.toggle('selected');
-    });
-  });
-}
-
-function setupGoals() {
-  document.querySelectorAll('#goals .goal-item').forEach(item => {
-    item.addEventListener('click', () => item.classList.toggle('selected'));
-  });
-}
-
-function setupLocationPills() {
-  document.querySelectorAll('#locationPills .loc-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      document.querySelectorAll('#locationPills .loc-pill').forEach(p => p.classList.remove('selected'));
-      pill.classList.add('selected');
-      selectedLocation = pill.dataset.val;
-      document.getElementById('err-location').style.display = 'none';
-      document.querySelectorAll('.class-card.selected').forEach(c => c.classList.remove('selected'));
-      document.getElementById('ageFieldWrap').classList.remove('visible');
-      document.getElementById('studentAge').value = '';
-      document.getElementById('err-class').style.display = 'none';
-      const fw = document.getElementById('fwCards');
-      const gv = document.getElementById('gvCards');
-      if (selectedLocation === 'Fort Worth') {
-        fw.style.display = 'grid';
-        gv.style.display = 'none';
-      } else {
-        fw.style.display = 'none';
-        gv.style.display = 'grid';
-      }
-      document.getElementById('classSectionWrap').classList.add('visible');
-    });
-  });
-}
-
-function setupClassCards() {
-  document.querySelectorAll('.class-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const activeGrid = selectedLocation === 'Fort Worth'
-        ? document.getElementById('fwCards')
-        : document.getElementById('gvCards');
-      activeGrid.querySelectorAll('.class-card').forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      document.getElementById('err-class').style.display = 'none';
-      const isYouth = card.dataset.youth === 'true';
-      const ageWrap = document.getElementById('ageFieldWrap');
-      if (isYouth) {
-        ageWrap.classList.add('visible');
-      } else {
-        ageWrap.classList.remove('visible');
-        document.getElementById('studentAge').value = '';
-      }
-    });
-  });
-}
-
-function getSelected(groupId) {
-  const group = document.getElementById(groupId);
-  if (!group) return '';
-  return Array.from(group.querySelectorAll('.pill.selected, .goal-item.selected'))
-    .map(el => el.dataset.val || el.textContent.trim()).join(', ');
-}
-
-function getSelectedClass() {
-  const card = document.querySelector('.class-card.selected');
-  return card ? card.dataset.val : '';
-}
-
-function validate() {
-  let ok = true;
-  [
-    { id: 'firstName', err: 'err-firstName' },
-    { id: 'lastName',  err: 'err-lastName' },
-    { id: 'phone',     err: 'err-phone' },
-    { id: 'email',     err: 'err-email' },
-  ].forEach(({ id, err }) => {
-    const el = document.getElementById(id);
-    const errEl = document.getElementById(err);
-    if (!el.value.trim()) {
-      el.classList.add('error'); errEl.style.display = 'block'; ok = false;
-    } else {
-      el.classList.remove('error'); errEl.style.display = 'none';
+  var LOCATIONS = {
+    "Fort Worth": {
+      instructor: "Scott Stice",
+      schedule: "Mondays, 7:00 to 8:00 PM",
+      venue: "The Guitar Studio, 4455 Camp Bowie Blvd., Suite 230, Fort Worth, TX 76107",
+      tuition: "$150 per month ($130 for seniors 65+) — classes begin the first week of each month"
+    },
+    "Grapevine": {
+      instructor: "Sergio Hernandez",
+      schedule: "Saturdays, 1:00 to 2:00 PM",
+      venue: "The Guitar Studio, 2011 W Northwest Highway, Suite 105, Grapevine, TX 76051",
+      tuition: "$150 per month ($130 for seniors 65+) — classes begin the first week of each month"
     }
-  });
-  if (!selectedLocation) {
-    document.getElementById('err-location').style.display = 'block'; ok = false;
-  }
-  if (!getSelectedClass()) {
-    document.getElementById('err-class').style.display = 'block'; ok = false;
-  }
-  return ok;
-}
-
-// ← Paste your deployed Apps Script URL here after following setup steps
-var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8bzJExIBp2nO1FRe5Qi_GWukh8kJaSgl85hufLh0AYNFUFDWD1aD7r24dtya1NHzF/exec";
-
-document.getElementById('btnSubmit').addEventListener('click', () => {
-  if (!validate()) return;
-
-  var btn = document.getElementById('btnSubmit');
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
-
-  var v = function(id) { return document.getElementById(id) ? document.getElementById(id).value : ''; };
-
-  var payload = {
-    firstName:   v('firstName'),
-    lastName:    v('lastName'),
-    phone:       v('phone'),
-    email:       v('email'),
-    contactPref: getSelected('contactPref'),
-    location:    selectedLocation,
-    className:   getSelectedClass(),
-    studentAge:  v('studentAge'),
-    experience:  getSelected('expLevel'),
-    stylePrefs:  getSelected('stylePrefs'),
-    hasGuitar:   getSelected('hasGuitar'),
-    goals:       getSelected('goals'),
-    startMonth:  document.getElementById('startDate') ? document.getElementById('startDate').value : '',
-    heardVia:    document.getElementById('referral') ? document.getElementById('referral').value : '',
-    notes:       v('notes')
   };
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function() {
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('successPanel').style.display = 'block';
-  })
-  .catch(function() {
-    // no-cors means we won't get an error even on success — show success
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('successPanel').style.display = 'block';
-  });
-});
+  var selectedSkill = "";
+  var selectedRef = "";
+  var currentLoc = null;
 
-document.getElementById('btnClear').addEventListener('click', () => {
-  document.querySelectorAll('input, textarea').forEach(el => el.value = '');
-  document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
-  document.querySelectorAll('.pill.selected, .goal-item.selected, .class-card.selected, .loc-pill.selected').forEach(el => el.classList.remove('selected'));
-  document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-  document.getElementById('ageFieldWrap').classList.remove('visible');
-  document.getElementById('classSectionWrap').classList.remove('visible');
-  selectedLocation = '';
-});
+  function selectLocation(name, btn) {
+    if (btn.classList.contains("tbd")) return;
+    var d = LOCATIONS[name];
+    if (!d) return;
+    document.querySelectorAll("#locBtns .loc-btn").forEach(function(b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    currentLoc = name;
+    document.getElementById("iDirector").textContent = d.instructor;
+    document.getElementById("iSchedule").textContent = d.schedule;
+    document.getElementById("iVenue").textContent = d.venue;
+    document.getElementById("iTuition").textContent = d.tuition;
+    document.getElementById("locInfo").classList.remove("hidden");
+  }
 
-document.getElementById('btnAnother').addEventListener('click', () => {
-  document.getElementById('formWrap').style.display = 'block';
-  document.getElementById('successPanel').style.display = 'none';
-  document.getElementById('btnClear').click();
-});
+  function selectSkill(el) {
+    document.querySelectorAll("#skillGrid .pill").forEach(function(p) { p.classList.remove("active"); });
+    el.classList.add("active");
+    selectedSkill = el.getAttribute("data-skill");
+  }
 
-setupPills('contactPref', false);
-setupPills('expLevel', false);
-setupPills('stylePrefs', true);
-setupPills('hasGuitar', false);
-setupGoals();
-setupLocationPills();
-setupClassCards();
+  function selectPill(el, gridId) {
+    document.querySelectorAll("#" + gridId + " .pill").forEach(function(p) { p.classList.remove("active"); });
+    el.classList.add("active");
+  }
+
+  function togglePill(el) {
+    el.classList.toggle("active");
+  }
+
+  function toggleGoal(el) {
+    el.classList.toggle("active");
+  }
+
+  function selectRef(el) {
+    document.querySelectorAll("#refGrid .ref-opt").forEach(function(r) { r.classList.remove("active"); });
+    el.classList.add("active");
+    selectedRef = el.getAttribute("data-val");
+  }
+
+  function getActiveVals(gridId, selector) {
+    var vals = [];
+    document.querySelectorAll("#" + gridId + " " + selector + ".active").forEach(function(el) {
+      vals.push(el.getAttribute("data-val") || el.textContent.trim());
+    });
+    return vals.join(", ");
+  }
+
+  function showError(msg) {
+    var e = document.getElementById("errMsg");
+    e.textContent = msg;
+    e.classList.add("show");
+  }
+
+  function submitForm() {
+    document.getElementById("errMsg").classList.remove("show");
+    var fn = document.getElementById("fn").value.trim();
+    var ln = document.getElementById("ln").value.trim();
+    var em = document.getElementById("em").value.trim();
+    var ph = document.getElementById("ph").value.trim();
+    var startMonth = document.getElementById("startMonth").value;
+
+    if (!currentLoc) { showError("Please choose a location."); return; }
+    if (!fn || !ln) { showError("Please enter your first and last name."); return; }
+    if (!em || em.indexOf("@") < 0) { showError("Please enter a valid email address."); return; }
+    if (!ph) { showError("Please enter a phone number."); return; }
+    if (!startMonth) { showError("Please select a preferred start month."); return; }
+
+    var data = {
+      location: currentLoc,
+      firstName: fn,
+      lastName: ln,
+      email: em,
+      phone: ph,
+      contactPref: getActiveVals("contactGrid", ".pill"),
+      skillLevel: selectedSkill,
+      yearsPlaying: document.getElementById("exp").value,
+      stylePrefs: getActiveVals("styleGrid", ".pill"),
+      hasGuitar: getActiveVals("guitarGrid", ".pill"),
+      goals: getActiveVals("goalGrid", ".goal-opt"),
+      tgsStudent: document.getElementById("tgs-chk").checked ? "Yes" : "No",
+      startMonth: startMonth,
+      heardVia: selectedRef,
+      notes: document.getElementById("notes").value.trim()
+    };
+
+    document.getElementById("submit-btn").disabled = true;
+    document.getElementById("spinner").style.display = "block";
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(function() {
+      document.getElementById("form-area").style.display = "none";
+      document.getElementById("success-msg").classList.add("show");
+      document.getElementById("success-msg").scrollIntoView({ behavior: "smooth" });
+    }).catch(function() {
+      document.getElementById("spinner").style.display = "none";
+      document.getElementById("submit-btn").disabled = false;
+      showError("Something went wrong. Please email info@theguitarstudio.org and we will get you registered.");
+    });
+  }
 </script>
 </body>
 </html>
